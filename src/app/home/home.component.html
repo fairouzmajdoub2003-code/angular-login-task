@@ -1,0 +1,33 @@
+<nav class="navbar">
+
+  <span class="brand">
+    Color Game
+  </span>
+
+  <div class="right">
+
+    <span class="username">
+      {{ username }}
+    </span>
+
+    <button class="logout-btn" (click)="logout()">
+      Logout
+    </button>
+
+  </div>
+
+</nav>
+
+<div class="container">
+
+  <h1>Welcome {{ username }}</h1>
+
+  <p>
+    Click below to access the Color Game.
+  </p>
+
+  <button class="game-btn" (click)="openColorGame()">
+    Color Game
+  </button>
+
+</div>

@@ -1,0 +1,65 @@
+.navbar{
+    height:60px;
+    background:#1683ed;
+    color:white;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:0 25px;
+}
+
+.brand{
+    font-size:24px;
+    font-weight:bold;
+}
+
+.right{
+
+    display:flex;
+    align-items:center;
+    gap:20px;
+
+}
+
+.logout-btn{
+
+    background:white;
+    color:#1683ed;
+
+    border:none;
+    padding:8px 16px;
+
+    border-radius:5px;
+
+    cursor:pointer;
+
+}
+
+.container{
+
+    margin-top:80px;
+
+    text-align:center;
+
+}
+
+.game-btn{
+
+    margin-top:30px;
+
+    background:#1683ed;
+    color:white;
+
+    border:none;
+
+    padding:15px 35px;
+
+    border-radius:5px;
+
+    cursor:pointer;
+
+    font-size:18px;
+
+}

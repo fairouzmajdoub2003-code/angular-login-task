@@ -7,7 +7,8 @@
   <div class="login-container">
     <h1>Login</h1>
 
-    <form #loginForm="ngForm">
+    <form #loginForm="ngForm" (ngSubmit)="login()">
+
       <label>Username</label>
 
       <input
@@ -16,11 +17,14 @@
         placeholder="Username"
         required
         minlength="7"
-        ngModel
-        #username="ngModel"
+        [(ngModel)]="username"
+        #usernameField="ngModel"
       />
 
-      <small class="error" *ngIf="username.invalid && username.touched">
+      <small
+        class="error"
+        *ngIf="usernameField.invalid && usernameField.touched"
+      >
         Username must contain at least 7 characters.
       </small>
 
@@ -32,17 +36,25 @@
         placeholder="Password"
         required
         minlength="6"
-        ngModel
-        #password="ngModel"
+        [(ngModel)]="password"
+        #passwordField="ngModel"
       />
 
-      <small class="error" *ngIf="password.invalid && password.touched">
+      <small
+        class="error"
+        *ngIf="passwordField.invalid && passwordField.touched"
+      >
         Password must contain at least 6 characters.
       </small>
 
       <button type="submit" [disabled]="loginForm.invalid">
         Login
       </button>
+
+      <p class="error" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </p>
+
     </form>
   </div>
 </div>
