@@ -1,33 +1,39 @@
-<nav class="navbar">
+<div class="page">
+  <nav class="navbar">
+    <span class="brand">Color Game</span>
 
-  <span class="brand">
-    Color Game
-  </span>
+    <div class="nav-right">
+      <span class="username">{{ username }}</span>
 
-  <div class="right">
+      <button
+        type="button"
+        class="logout-link"
+        (click)="showLogoutConfirmation()"
+      >
+        Logout
+      </button>
+    </div>
+  </nav>
 
-    <span class="username">
-      {{ username }}
-    </span>
+  <div class="logout-confirmation" *ngIf="confirmingLogout">
+    <span>Voulez vous vraiment vous déconnecter ?</span>
 
-    <button class="logout-btn" (click)="logout()">
-      Logout
+    <button
+      type="button"
+      class="yes-button"
+      (click)="confirmLogout()"
+    >
+      Oui
     </button>
-
   </div>
 
-</nav>
-
-<div class="container">
-
-  <h1>Welcome {{ username }}</h1>
-
-  <p>
-    Click below to access the Color Game.
-  </p>
-
-  <button class="game-btn" (click)="openColorGame()">
-    Color Game
-  </button>
-
+  <main class="home-content">
+    <button
+      type="button"
+      class="game-button"
+      (click)="openColorGame()"
+    >
+      Color Game
+    </button>
+  </main>
 </div>

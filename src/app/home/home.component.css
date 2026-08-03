@@ -1,65 +1,92 @@
-.navbar{
-    height:60px;
-    background:#1683ed;
-    color:white;
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    padding:0 25px;
+* {
+  box-sizing: border-box;
 }
 
-.brand{
-    font-size:24px;
-    font-weight:bold;
+.page {
+  min-height: 100vh;
+  background: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-.right{
+.navbar {
+  width: calc(100% - 48px);
+  height: 34px;
+  margin: 42px 24px 0;
+  padding: 0 10px;
 
-    display:flex;
-    align-items:center;
-    gap:20px;
+  background: #0d82f2;
+  color: #ffffff;
 
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.logout-btn{
-
-    background:white;
-    color:#1683ed;
-
-    border:none;
-    padding:8px 16px;
-
-    border-radius:5px;
-
-    cursor:pointer;
-
+.brand {
+  font-size: 10px;
 }
 
-.container{
-
-    margin-top:80px;
-
-    text-align:center;
-
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
-.game-btn{
+.username,
+.logout-link {
+  color: #dceeff;
+  font-size: 8px;
+}
 
-    margin-top:30px;
+.logout-link {
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
 
-    background:#1683ed;
-    color:white;
+.logout-confirmation {
+  width: 60%;
+  max-width: 510px;
+  margin: 4px auto 0;
 
-    border:none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 
-    padding:15px 35px;
+  color: #555555;
+  font-size: 7px;
+}
 
-    border-radius:5px;
+.yes-button {
+  padding: 3px 7px;
 
-    cursor:pointer;
+  border: none;
+  border-radius: 2px;
 
-    font-size:18px;
+  background: #1683ed;
+  color: #ffffff;
 
+  font-size: 7px;
+  cursor: pointer;
+}
+
+.home-content {
+  width: 60%;
+  max-width: 510px;
+  margin: 120px auto 0;
+  text-align: center;
+}
+
+.game-button {
+  padding: 6px 13px;
+
+  border: none;
+  border-radius: 2px;
+
+  background: #1683ed;
+  color: #ffffff;
+
+  font-size: 9px;
+  cursor: pointer;
 }

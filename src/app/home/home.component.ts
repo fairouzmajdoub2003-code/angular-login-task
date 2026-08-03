@@ -9,26 +9,26 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
 
   username = '';
+  confirmingLogout = false;
 
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-    this.username = localStorage.getItem('username') || '';
+    this.username = localStorage.getItem('username') || 'Admin';
+  }
+
+  showLogoutConfirmation(): void {
+    this.confirmingLogout = true;
+  }
+
+  confirmLogout(): void {
+    localStorage.removeItem('username');
+    localStorage.removeItem('token');
+
+    this.router.navigate(['/login']);
   }
 
   openColorGame(): void {
     this.router.navigate(['/color-game']);
   }
-
-  logout(): void {
-
-    const confirmLogout = confirm('Are you sure you want to logout?');
-
-    if (confirmLogout) {
-      localStorage.removeItem('username');
-      this.router.navigate(['/login']);
-    }
-
-  }
-
 }
