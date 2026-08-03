@@ -1,5 +1,14 @@
 import { Component } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
+
+interface LoginResponse {
+  success: boolean;
+  message: string;
+  username: string;
+  token: string;
+}
 
 @Component({
   selector: 'app-login',
@@ -11,22 +20,49 @@ export class LoginComponent {
   username = '';
   password = '';
   errorMessage = '';
+  isLoading = false;
 
-  constructor(private router: Router) {}
+  private readonly loginUrl = 'http://localhost:3000/api/login';
 
-  login(): void {
+  constructor(
+    private http: HttpClient,
+    private router: Router
+  ) {}
+
+  login(loginForm: NgForm): void {
     this.errorMessage = '';
 
-    // Temporary credentials because the internship says no database
-    if (
-      this.username === 'admin123' &&
-      this.password === '123456'
-    ) {
-      localStorage.setItem('username', this.username);
-
-      this.router.navigate(['/home']);
-    } else {
-      this.errorMessage = 'Invalid credentials';
+    if (loginForm.invalid) {
+      loginForm.form.markAllAsTouched();
+      return;
     }
+
+    this.isLoading = true;
+
+    this.http.post<LoginResponse>(this.loginUrl, {
+      username: this.username.trim(),
+      password: this.password
+    }).subscribe(
+      (response: LoginResponse) => {
+        localStorage.setItem('username', response.username);
+        localStorage.setItem('token', response.token);
+
+        this.isLoading = false;
+        this.router.navigate(['/home']);
+      },
+      (error: HttpErrorResponse) => {
+        this.isLoading = false;
+
+        if (error.status === 0) {
+          this.errorMessage =
+            'Cannot connect to the backend server.';
+        } else if (error.status === 401) {
+          this.errorMessage = 'Error: invalid credential';
+        } else {
+          this.errorMessage =
+            error.error?.message || 'Login failed';
+        }
+      }
+    );
   }
 }

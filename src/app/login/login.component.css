@@ -4,35 +4,43 @@
 
 .page {
   min-height: 100vh;
-  font-family: Arial, sans-serif;
+  background-color: white;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .navbar {
-  height: 50px;
-  background-color: #1683f3;
+  width: calc(100% - 56px);
+  height: 36px;
+  margin: 22px 28px 0;
+  padding: 0 10px;
+
+  background-color: #0d82f2;
   color: white;
+
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 0 20px;
+  justify-content: space-between;
 }
 
 .brand {
-  font-weight: bold;
+  font-size: 12px;
+  font-weight: normal;
 }
 
 .nav-login {
-  font-size: 14px;
+  font-size: 10px;
 }
 
 .login-container {
-  width: 60%;
-  max-width: 700px;
-  margin: 30px auto;
+  width: 64%;
+  max-width: 600px;
+  margin: 8px auto 0;
 }
 
 h1 {
-  margin-bottom: 15px;
+  margin: 0 0 8px;
+  font-size: 27px;
+  font-weight: 500;
 }
 
 form {
@@ -41,22 +49,111 @@ form {
 }
 
 label {
-  margin: 10px 0 5px;
+  margin: 4px 0;
+  font-size: 10px;
+  color: #333;
+}
+
+.input-group {
+  position: relative;
+  display: flex;
+  width: 100%;
+}
+
+.input-icon {
+  width: 24px;
+  height: 25px;
+
+  border: 1px solid #d9d9d9;
+  border-right: none;
+
+  background-color: #eeeeee;
+  color: #555;
+
+  font-size: 9px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 input {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
+  width: 100%;
+  height: 25px;
+  padding: 4px 27px 4px 8px;
+
+  border: 1px solid #d9d9d9;
+  outline: none;
+
+  font-size: 9px;
+}
+
+input::placeholder {
+  color: #999;
+}
+
+input:focus {
+  border-color: #0d82f2;
+}
+
+.invalid-group .input-icon,
+.invalid-group input {
+  border-color: #ff7586;
+}
+
+.error-icon {
+  position: absolute;
+  right: 6px;
+  top: 5px;
+
+  width: 13px;
+  height: 13px;
+
+  border: 1px solid #ff6578;
+  border-radius: 50%;
+
+  color: #ff6578;
+  font-size: 8px;
+  font-weight: bold;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.validation-message {
+  min-height: 11px;
+  margin: 2px 0 4px;
+
+  color: #ff6578;
+  font-size: 8px;
+}
+
+.credential-error {
+  margin: 4px 0;
+  padding: 4px 6px;
+
+  background-color: #f8d7da;
+  color: #842029;
+
+  font-size: 9px;
 }
 
 button {
-  width: 70px;
-  margin-top: 15px;
-  padding: 10px;
+  width: fit-content;
+  margin-top: 4px;
+  padding: 5px 9px;
+
   border: none;
-  border-radius: 3px;
-  background-color: #1683f3;
+  border-radius: 2px;
+
+  background-color: #1683ed;
   color: white;
+
+  font-size: 9px;
   cursor: pointer;
+}
+
+button:hover {
+  background-color: #0875dc;
 }

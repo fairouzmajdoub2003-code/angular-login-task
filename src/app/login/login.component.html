@@ -7,54 +7,121 @@
   <div class="login-container">
     <h1>Login</h1>
 
-    <form #loginForm="ngForm" (ngSubmit)="login()">
+    <form #loginForm="ngForm" (ngSubmit)="login(loginForm)" novalidate>
 
-      <label>Username</label>
+      <label for="username">Email</label>
 
-      <input
-        type="text"
-        name="username"
-        placeholder="Username"
-        required
-        minlength="7"
-        [(ngModel)]="username"
-        #usernameField="ngModel"
-      />
-
-      <small
-        class="error"
-        *ngIf="usernameField.invalid && usernameField.touched"
+      <div
+        class="input-group"
+        [class.invalid-group]="
+          usernameField.invalid &&
+          (usernameField.touched || loginForm.submitted)
+        "
       >
-        Username must contain at least 7 characters.
-      </small>
+        <span class="input-icon">@</span>
 
-      <label>Password</label>
+        <input
+          id="username"
+          type="text"
+          name="username"
+          placeholder="Username"
+          required
+          minlength="7"
+          [(ngModel)]="username"
+          #usernameField="ngModel"
+        />
 
-      <input
-        type="password"
-        name="password"
-        placeholder="Password"
-        required
-        minlength="6"
-        [(ngModel)]="password"
-        #passwordField="ngModel"
-      />
+        <span
+          class="error-icon"
+          *ngIf="
+            usernameField.invalid &&
+            (usernameField.touched || loginForm.submitted)
+          "
+        >
+          !
+        </span>
+      </div>
 
-      <small
-        class="error"
-        *ngIf="passwordField.invalid && passwordField.touched"
+      <div
+        class="validation-message"
+        *ngIf="
+          usernameField.errors?.required &&
+          (usernameField.touched || loginForm.submitted)
+        "
       >
-        Password must contain at least 6 characters.
-      </small>
+        * required : true
+      </div>
 
-      <button type="submit" [disabled]="loginForm.invalid">
-        Login
-      </button>
+      <div
+        class="validation-message"
+        *ngIf="
+          usernameField.errors?.minlength &&
+          (usernameField.touched || loginForm.submitted)
+        "
+      >
+        * Longueur min 6 caractères
+      </div>
 
-      <p class="error" *ngIf="errorMessage">
+      <label for="password">Password</label>
+
+      <div
+        class="input-group"
+        [class.invalid-group]="
+          passwordField.invalid &&
+          (passwordField.touched || loginForm.submitted)
+        "
+      >
+        <span class="input-icon">🔒</span>
+
+        <input
+          id="password"
+          type="password"
+          name="password"
+          placeholder="Password"
+          required
+          minlength="6"
+          [(ngModel)]="password"
+          #passwordField="ngModel"
+        />
+
+        <span
+          class="error-icon"
+          *ngIf="
+            passwordField.invalid &&
+            (passwordField.touched || loginForm.submitted)
+          "
+        >
+          !
+        </span>
+      </div>
+
+      <div
+        class="validation-message"
+        *ngIf="
+          passwordField.errors?.required &&
+          (passwordField.touched || loginForm.submitted)
+        "
+      >
+        * required : true
+      </div>
+
+      <div
+        class="validation-message"
+        *ngIf="
+          passwordField.errors?.minlength &&
+          (passwordField.touched || loginForm.submitted)
+        "
+      >
+        * Longueur min 5 caractères
+      </div>
+
+      <div class="credential-error" *ngIf="errorMessage">
         {{ errorMessage }}
-      </p>
+      </div>
 
+      <button type="submit">
+        {{ isLoading ? 'Loading...' : 'Login' }}
+      </button>
     </form>
   </div>
 </div>
