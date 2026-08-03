@@ -4,11 +4,14 @@
     <span class="nav-login">Login</span>
   </nav>
 
-  <div class="login-container">
+  <main class="login-container">
     <h1>Login</h1>
 
-    <form #loginForm="ngForm" (ngSubmit)="login(loginForm)" novalidate>
+    <div class="credential-alert" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </div>
 
+    <form #loginForm="ngForm" (ngSubmit)="login(loginForm)" novalidate>
       <label for="username">Email</label>
 
       <div
@@ -16,6 +19,10 @@
         [class.invalid-group]="
           usernameField.invalid &&
           (usernameField.touched || loginForm.submitted)
+        "
+        [class.valid-group]="
+          usernameField.valid &&
+          usernameField.touched
         "
       >
         <span class="input-icon">@</span>
@@ -32,13 +39,20 @@
         />
 
         <span
-          class="error-icon"
+          class="status-icon invalid-icon"
           *ngIf="
             usernameField.invalid &&
             (usernameField.touched || loginForm.submitted)
           "
         >
           !
+        </span>
+
+        <span
+          class="status-icon valid-icon"
+          *ngIf="usernameField.valid && usernameField.touched"
+        >
+          ✓
         </span>
       </div>
 
@@ -59,6 +73,16 @@
           (usernameField.touched || loginForm.submitted)
         "
       >
+        * email : false
+      </div>
+
+      <div
+        class="validation-message"
+        *ngIf="
+          usernameField.errors?.minlength &&
+          (usernameField.touched || loginForm.submitted)
+        "
+      >
         * Longueur min 6 caractères
       </div>
 
@@ -69,6 +93,10 @@
         [class.invalid-group]="
           passwordField.invalid &&
           (passwordField.touched || loginForm.submitted)
+        "
+        [class.valid-group]="
+          passwordField.valid &&
+          passwordField.touched
         "
       >
         <span class="input-icon">🔒</span>
@@ -85,13 +113,20 @@
         />
 
         <span
-          class="error-icon"
+          class="status-icon invalid-icon"
           *ngIf="
             passwordField.invalid &&
             (passwordField.touched || loginForm.submitted)
           "
         >
           !
+        </span>
+
+        <span
+          class="status-icon valid-icon"
+          *ngIf="passwordField.valid && passwordField.touched"
+        >
+          ✓
         </span>
       </div>
 
@@ -112,16 +147,12 @@
           (passwordField.touched || loginForm.submitted)
         "
       >
-        * Longueur min 5 caractères
-      </div>
-
-      <div class="credential-error" *ngIf="errorMessage">
-        {{ errorMessage }}
+        Longueur min 5 caractères
       </div>
 
       <button type="submit">
         {{ isLoading ? 'Loading...' : 'Login' }}
       </button>
     </form>
-  </div>
+  </main>
 </div>
